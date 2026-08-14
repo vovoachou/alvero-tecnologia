@@ -1,11 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
-import { ArrowLeft, CheckCircle2, MessageSquareCode } from 'lucide-react';
-import { motion } from 'motion/react';
+import { ArrowLeft, CheckCircle2, MessageSquareCode, ChevronDown } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+
+interface FAQItem {
+  q: string;
+  a: string;
+}
 
 interface SolutionDetailProps {
   title: string;
@@ -14,6 +19,46 @@ interface SolutionDetailProps {
   features: string[];
   investmentRange: string;
   details: string;
+  targetAudience: string[];
+  howItWorks: string[];
+  faqs: FAQItem[];
+}
+
+function FAQAccordionItem({ q, a, i }: { q: string; a: string; i: number }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="border-b border-border-subtle last:border-0">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full py-5 flex items-center justify-between text-left group transition-colors"
+      >
+        <span className="text-base font-bold text-navy group-hover:text-primary-blue transition-colors">
+          {q}
+        </span>
+        <ChevronDown
+          size={18}
+          className={`text-text-secondary transition-transform duration-300 flex-shrink-0 ml-4 ${
+            isOpen ? 'rotate-180 text-primary-blue' : ''
+          }`}
+        />
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden"
+          >
+            <p className="pb-5 text-text-secondary text-sm leading-relaxed whitespace-pre-line">
+              {a}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 }
 
 export default function SolutionDetail({
@@ -23,6 +68,9 @@ export default function SolutionDetail({
   features,
   investmentRange,
   details,
+  targetAudience,
+  howItWorks,
+  faqs,
 }: SolutionDetailProps) {
   return (
     <main className="min-h-screen flex flex-col bg-background-soft">
@@ -79,6 +127,50 @@ export default function SolutionDetail({
                 ))}
               </div>
             </div>
+
+            {/* Para quem é essa solução */}
+            <div className="bg-white rounded-3xl p-8 border border-border-subtle shadow-brand-sm space-y-6">
+              <h2 className="text-2xl font-bold text-navy">Para quem é essa solução</h2>
+              <div className="space-y-4">
+                {targetAudience.map((bullet, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-digital-turquoise/10 flex items-center justify-center text-digital-turquoise flex-shrink-0 mt-0.5">
+                      <CheckCircle2 size={14} />
+                    </div>
+                    <span className="text-text-primary text-sm md:text-base font-medium">{bullet}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Como funciona */}
+            <div className="bg-white rounded-3xl p-8 border border-border-subtle shadow-brand-sm space-y-6">
+              <h2 className="text-2xl font-bold text-navy">Como funciona</h2>
+              <div className="relative pl-6 border-l-2 border-border-subtle ml-3 space-y-8 py-2">
+                {howItWorks.map((step, i) => (
+                  <div key={i} className="flex gap-4 relative">
+                    {/* Number node on the timeline line */}
+                    <div className="absolute -left-[37px] top-0.5 w-6 h-6 rounded-full bg-primary-blue text-white font-bold text-[10px] flex items-center justify-center border-4 border-white shadow-sm">
+                      {i + 1}
+                    </div>
+                    <p className="text-text-primary text-sm md:text-base leading-relaxed">
+                      {step}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Perguntas frequentes */}
+            <div className="bg-white rounded-3xl p-8 border border-border-subtle shadow-brand-sm space-y-4">
+              <h2 className="text-2xl font-bold text-navy mb-2">Perguntas frequentes</h2>
+              <div className="divide-y divide-border-subtle">
+                {faqs.map((faq, i) => (
+                  <FAQAccordionItem key={i} q={faq.q} a={faq.a} i={i} />
+                ))}
+              </div>
+            </div>
+
           </div>
 
           {/* Pricing & CTA Card */}

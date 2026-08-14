@@ -19,6 +19,31 @@ export default function AppPage() {
         'Infraestrutura em nuvem configurada para receber milhares de acessos',
         'Código limpo, documentado e pronto para captação de investimento'
       ]}
+      targetAudience={[
+        'Empreendedores com uma ideia validada que precisam de um produto funcional pra testar no mercado',
+        'Negócios que querem lançar um MVP antes de investir pesado em uma plataforma completa',
+        'Times que precisam transformar um protótipo ou rascunho em algo real e usável'
+      ]}
+      howItWorks={[
+        'Entendemos a ideia, o público e o problema que o produto resolve',
+        'Desenhamos a experiência do usuário e a arquitetura técnica do MVP',
+        'Desenvolvemos em ciclos curtos, com versões testáveis desde as primeiras semanas',
+        'Entregamos o produto publicado, pronto pra validar com usuários reais'
+      ]}
+      faqs={[
+        {
+          q: 'Preciso ter todas as funcionalidades definidas antes de começar?',
+          a: 'Não, ajudamos a priorizar o essencial pro MVP e deixamos o resto pra próximas fases.'
+        },
+        {
+          q: 'O MVP já nasce pronto pra escalar?',
+          a: 'A arquitetura é pensada pra crescer, mas o foco inicial é validar a ideia com o menor investimento possível.'
+        },
+        {
+          q: 'Depois do MVP, dá pra continuar evoluindo o produto?',
+          a: 'Sim, é comum continuarmos com o cliente em ciclos de evolução após a validação inicial.'
+        }
+      ]}
     />
   );
 }

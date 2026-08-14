@@ -19,6 +19,31 @@ export default function AutomacaoPage() {
         'Processamento automático de relatórios e faturamento',
         'Logs de execução e auditoria para garantir rastreabilidade'
       ]}
+      targetAudience={[
+        'Empresas que copiam dados manualmente entre planilha, CRM e sistema financeiro',
+        'Times que gastam horas montando relatórios que poderiam ser automáticos',
+        'Negócios com processos repetitivos que dependem de alguém lembrar de fazer'
+      ]}
+      howItWorks={[
+        'Mapeamos o processo manual de ponta a ponta, identificando onde ele trava',
+        'Desenhamos o fluxo de automação entre as ferramentas envolvidas',
+        'Implementamos a integração via API, webhook ou planilha, com testes reais',
+        'Monitoramos as primeiras execuções pra garantir que tudo roda sem erro'
+      ]}
+      faqs={[
+        {
+          q: 'Preciso trocar de ferramenta pra automatizar?',
+          a: 'Não, na maioria dos casos conectamos as ferramentas que você já usa, sem precisar migrar de sistema.'
+        },
+        {
+          q: 'E se algo der errado no meio do processo automático?',
+          a: 'Configuramos alertas e pontos de verificação pra você ser avisado antes que um erro silencioso vire um problema maior.'
+        },
+        {
+          q: 'Automação funciona pra qualquer processo?',
+          a: 'Processos com regras claras e repetitivas são os candidatos ideais. No diagnóstico avaliamos se faz sentido pro seu caso.'
+        }
+      ]}
     />
   );
 }

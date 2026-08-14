@@ -19,6 +19,31 @@ export default function DashboardsPage() {
         'Acesso seguro e restrito por usuário com criptografia',
         'Design limpo e otimizado para tomada de decisão ágil'
       ]}
+      targetAudience={[
+        'Gestores que tomam decisão com base em relatório atrasado ou "achismo"',
+        'Empresas com dados espalhados entre planilhas, sistemas e ferramentas diferentes',
+        'Times que gastam horas todo mês montando o mesmo relatório na mão'
+      ]}
+      howItWorks={[
+        'Identificamos os indicadores que realmente importam pra sua operação',
+        'Conectamos o painel direto nas fontes de dados (planilha, ERP, CRM, financeiro)',
+        'Desenhamos visualizações claras, sem poluição de informação',
+        'Entregamos com atualização automática, sem depender de trabalho manual'
+      ]}
+      faqs={[
+        {
+          q: 'Preciso ter os dados organizados antes de contratar?',
+          a: 'Não, parte do nosso trabalho é mapear onde os dados estão hoje e organizar isso na estrutura do painel.'
+        },
+        {
+          q: 'O painel atualiza sozinho?',
+          a: 'Sim, conectamos direto nas fontes de dados, sem necessidade de atualização manual.'
+        },
+        {
+          q: 'Consigo acessar de qualquer lugar?',
+          a: 'Sim, o painel é acessível por navegador, de qualquer dispositivo com internet.'
+        }
+      ]}
     />
   );
 }

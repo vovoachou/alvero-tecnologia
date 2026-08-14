@@ -19,6 +19,31 @@ export default function SistemaPage() {
         'Painel administrativo completo com permissões de usuário',
         'Propriedade intelectual de 100% do código desenvolvido'
       ]}
+      targetAudience={[
+        'Empresas que ainda controlam pedidos, clientes ou estoque em planilhas separadas',
+        'Negócios que cresceram e hoje têm processos manuais gerando erro e retrabalho',
+        'Times que dependem de uma pessoa específica saber "como o processo funciona"'
+      ]}
+      howItWorks={[
+        'Mapeamos seu processo atual e os dados envolvidos',
+        'Desenhamos a arquitetura e os fluxos do sistema',
+        'Desenvolvemos em ciclos curtos, com validação a cada etapa',
+        'Entregamos com treinamento da equipe e suporte pós-lançamento'
+      ]}
+      faqs={[
+        {
+          q: 'Meu negócio é pequeno, vale a pena um sistema sob medida?',
+          a: 'Sim — o escopo é dimensionado pro seu tamanho atual. Não precisa ser uma operação grande pra sair da planilha.'
+        },
+        {
+          q: 'Posso pedir alterações depois de pronto?',
+          a: 'Sim, o sistema é seu — evoluções adicionais entram como um novo escopo, com preço definido antes de começar.'
+        },
+        {
+          q: 'O sistema roda no celular também?',
+          a: 'Sim, todo desenvolvimento é responsivo, funciona em desktop, tablet e celular.'
+        }
+      ]}
     />
   );
 }
