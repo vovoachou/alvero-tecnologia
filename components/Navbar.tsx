@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
@@ -17,6 +18,7 @@ const navLinks = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,17 +28,20 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const isHome = pathname === '/';
+  const showDarkNavbar = isScrolled || !isHome;
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+        showDarkNavbar
           ? 'bg-white/90 backdrop-blur-md py-3 shadow-brand-sm'
           : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between">
         <Link href="/" className="hover:opacity-90 transition-opacity">
-          <Logo variant={isScrolled ? 'dark' : 'light'} />
+          <Logo variant={showDarkNavbar ? 'dark' : 'light'} />
         </Link>
 
         {/* Desktop Menu */}
@@ -46,7 +51,7 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               className={`text-sm font-medium transition-colors hover:text-primary-blue ${
-                isScrolled ? 'text-text-primary' : 'text-white/90'
+                showDarkNavbar ? 'text-text-primary' : 'text-white/90'
               }`}
             >
               {link.name}
@@ -55,7 +60,7 @@ export default function Navbar() {
           <Link
             href="/diagnostico"
             className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${
-              isScrolled
+              showDarkNavbar
                 ? 'bg-primary-blue text-white hover:bg-bright-blue shadow-brand-sm hover:shadow-brand-md'
                 : 'bg-white text-navy hover:bg-background-soft'
             }`}
@@ -69,7 +74,7 @@ export default function Navbar() {
           className="lg:hidden p-2 text-primary-blue"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} className={isScrolled ? 'text-navy' : 'text-white'} />}
+          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} className={showDarkNavbar ? 'text-navy' : 'text-white'} />}
         </button>
       </div>
 

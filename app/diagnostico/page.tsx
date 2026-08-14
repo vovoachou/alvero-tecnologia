@@ -22,10 +22,26 @@ export default function DiagnosticoPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Submissão iniciada. Dados do formulário:', formData);
     setIsLoading(true);
     setError('');
 
+    // Validação do lado do cliente para prevenir envios vazios e erros silenciosos
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.whatsapp.trim() ||
+      !formData.company.trim() ||
+      !formData.bottleneck.trim()
+    ) {
+      console.warn('Submissão bloqueada: campos obrigatórios vazios.');
+      setError('Por favor, preencha todos os campos obrigatórios do formulário.');
+      setIsLoading(false);
+      return;
+    }
+
     try {
+      console.log('Enviando requisição POST para /api/diagnostico...');
       const res = await fetch('/api/diagnostico', {
         method: 'POST',
         headers: {
@@ -34,12 +50,16 @@ export default function DiagnosticoPage() {
         body: JSON.stringify(formData),
       });
 
+      console.log('Resposta da API recebida. Status:', res.status);
       if (!res.ok) {
-        throw new Error('Falha no envio');
+        throw new Error(`Erro HTTP! status: ${res.status}`);
       }
 
+      const data = await res.json();
+      console.log('Sucesso no processamento do lead:', data);
       setIsSubmitted(true);
     } catch (err: any) {
+      console.error('Erro detectado durante a submissão do formulário:', err);
       setError('Houve um erro técnico. Por favor, tente novamente ou nos chame no WhatsApp.');
     } finally {
       setIsLoading(false);
