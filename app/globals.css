@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --font-poppins: var(--font-poppins);
+  --font-inter: var(--font-inter);
+
+  --color-navy: #0B1320;
+  --color-navy-secondary: #0D1B3D;
+  --color-primary-blue: #2563EB;
+  --color-bright-blue: #149BFF;
+  --color-digital-turquoise: #00C2A8;
+  --color-text-primary: #172033;
+  --color-text-secondary: #667085;
+  --color-background-soft: #F5F7FA;
+  --color-border-subtle: #E6E8EB;
+
+  --shadow-brand-sm: 0 4px 16px rgba(11, 19, 32, 0.06);
+  --shadow-brand-md: 0 12px 32px rgba(11, 19, 32, 0.10);
+  --shadow-brand-dark: 0 16px 48px rgba(0, 0, 0, 0.22);
+}
+
+@layer base {
+  body {
+    @apply font-inter font-normal text-text-primary bg-white;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins font-semibold;
+  }
+}
+
+.gradient-institutional {
+  background: linear-gradient(135deg, #2563EB 0%, #149BFF 55%, #00C2A8 100%);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #2563EB 0%, #149BFF 55%, #00C2A8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-navy-gradient {
+  background: radial-gradient(circle at top right, #0D1B3D 0%, #0B1320 100%);
+}
