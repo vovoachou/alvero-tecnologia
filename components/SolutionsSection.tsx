@@ -13,6 +13,7 @@ const solutions = [
     description: 'Sistemas web robustos projetados para a realidade da sua operação, integrando dados e eliminando gargalos manuais.',
     cta: 'Consultar viabilidade técnica',
     color: 'bg-blue-600',
+    slug: 'sistema',
   },
   {
     icon: BrainCircuit,
@@ -21,6 +22,7 @@ const solutions = [
     description: 'Funcionários digitais treinados para suporte, vendas e análise de dados, operando 24/7 com precisão e escala.',
     cta: 'Conhecer arquitetura de IA',
     color: 'bg-indigo-600',
+    slug: 'ia',
   },
   {
     icon: Zap,
@@ -29,6 +31,7 @@ const solutions = [
     description: 'Conectamos seu ecossistema de ferramentas para que tarefas repetitivas sejam executadas de forma invisível e segura.',
     cta: 'Mapear automação',
     color: 'bg-cyan-600',
+    slug: 'automacao',
   },
   {
     icon: LineChart,
@@ -37,6 +40,7 @@ const solutions = [
     description: 'Dashboards avançados que consolidam KPIs vitais da sua empresa para decisões baseadas em dados, não em suposições.',
     cta: 'Visualizar inteligência',
     color: 'bg-blue-800',
+    slug: 'dashboards',
   },
   {
     icon: Rocket,
@@ -45,6 +49,7 @@ const solutions = [
     description: 'Desenvolvimento ágil de MVPs e plataformas SaaS escaláveis, com foco em segurança, performance e experiência do usuário.',
     cta: 'Desenvolver projeto',
     color: 'bg-slate-800',
+    slug: 'app',
   },
 ];
 
@@ -98,7 +103,7 @@ export default function SolutionsSection() {
               </p>
 
               <Link
-                href="/diagnostico"
+                href={`/solucoes/${solution.slug}`}
                 className="w-full py-4 bg-background-soft hover:bg-primary-blue hover:text-white text-navy rounded-xl font-bold transition-all flex items-center justify-center gap-2 group/btn"
               >
                 {solution.cta}
