@@ -3,9 +3,8 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, whatsapp, company, solution, bottleneck } = body;
+    const { name = '', email = '', whatsapp = '', company = '', solution = '', bottleneck = '' } = body || {};
 
-    // Check if RESEND_API_KEY is configured in the environment
     const apiKey = process.env.RESEND_API_KEY;
 
     if (!apiKey || apiKey === '' || apiKey.includes('YOUR_')) {
@@ -18,23 +17,22 @@ export async function POST(request: Request) {
       console.log('Gargalo:', bottleneck);
       console.log('---------------------------------------------');
 
-      // Simulate a small delay for a realistic loading state in the UI
       await new Promise((resolve) => setTimeout(resolve, 500));
-
       return NextResponse.json({ success: true, mock: true });
     }
 
-    // Integrate with Resend API using standard HTTP fetch
+    const safeBottleneck = String(bottleneck).replace(/\n/g, '<br/>');
+
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
+        'Authorization': `Bearer ${apiKey.trim()}`,
       },
       body: JSON.stringify({
         from: 'Alvero Leads <onboarding@resend.dev>',
         to: 'alverotecnologia@gmail.com',
-        subject: `Novo Lead de Diagnóstico: ${company}`,
+        subject: `Novo Lead de Diagnóstico: ${company || name || 'Novo Contato'}`,
         html: `
           <div style="font-family: sans-serif; padding: 20px; color: #172033; max-width: 600px;">
             <h1 style="color: #2563EB; border-bottom: 2px solid #E6E8EB; padding-bottom: 10px;">Novo Lead de Diagnóstico</h1>
@@ -45,7 +43,7 @@ export async function POST(request: Request) {
             <p style="margin: 15px 0;"><strong>Solução de Interesse:</strong> ${solution}</p>
             <p style="margin: 15px 0; background-color: #F5F7FA; padding: 15px; border-radius: 10px; border: 1px solid #E6E8EB;">
               <strong>Gargalo Operacional:</strong><br/>
-              ${bottleneck.replace(/\n/g, '<br/>')}
+              ${safeBottleneck}
             </p>
             <span style="font-size: 11px; color: #667085;">Enviado pelo formulário institucional da Alvero Tecnologia.</span>
           </div>
@@ -53,15 +51,19 @@ export async function POST(request: Request) {
       }),
     });
 
+    const resData = await response.json().catch(() => null);
+
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Erro de envio do Resend:', errorText);
-      return NextResponse.json({ error: 'Falha ao enviar e-mail via Resend' }, { status: 500 });
+      console.error('Erro de envio do Resend:', resData);
+      return NextResponse.json({ 
+        error: 'Falha ao enviar e-mail via Resend', 
+        details: resData 
+      }, { status: response.status || 500 });
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, data: resData });
   } catch (error: any) {
     console.error('Erro interno na rota /api/diagnostico:', error);
-    return NextResponse.json({ error: 'Erro interno do servidor' }, { status: 500 });
+    return NextResponse.json({ error: 'Erro interno do servidor', message: error?.message }, { status: 500 });
   }
 }
