@@ -18,9 +18,14 @@ export const metadata: Metadata = {
   title: 'Alvero Tecnologia | Sistemas Sob Medida, IA e Automação',
   description: 'Tecnologia que se adapta ao seu negócio. Sistemas, IA e automação com escopo, prazo e investimento claros.',
   icons: {
-    icon: '/icon.png',
-    shortcut: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: [
+      { url: '/favicon.ico?v=2' },
+      { url: '/icon.png?v=2', type: 'image/png' },
+    ],
+    shortcut: ['/favicon.ico?v=2'],
+    apple: [
+      { url: '/apple-touch-icon.png?v=2', sizes: '180x180', type: 'image/png' },
+    ],
   },
 };
 
