@@ -33,7 +33,7 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         from: 'Alvero Leads <onboarding@resend.dev>',
-        to: 'contato@alverotecnologia.com.br',
+        to: 'alverotecnologia@gmail.com',
         subject: `Novo Lead de Diagnóstico: ${company}`,
         html: `
           <div style="font-family: sans-serif; padding: 20px; color: #172033; max-width: 600px;">
