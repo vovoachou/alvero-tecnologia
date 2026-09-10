@@ -17,6 +17,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Alvero Tecnologia | Sistemas Sob Medida, IA e Automação',
   description: 'Tecnologia que se adapta ao seu negócio. Sistemas, IA e automação com escopo, prazo e investimento claros.',
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
