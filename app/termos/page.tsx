@@ -19,7 +19,7 @@ export default function TermosPage() {
           </Link>
 
           <h1 className="text-3xl md:text-4xl font-bold text-navy mb-4">Termos de Uso</h1>
-          <p className="text-text-secondary text-xs mb-8">Última atualização: 13 de agosto de 2026</p>
+          <p className="text-text-secondary text-xs mb-8">Última atualização: 6 de outubro de 2026</p>
 
           <div className="space-y-6 text-text-primary leading-relaxed text-sm md:text-base">
             <section>
@@ -51,7 +51,14 @@ export default function TermosPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-bold text-navy mb-3">5. Contato</h2>
+              <h2 className="text-lg font-bold text-navy mb-3">5. Privacidade e Cookies</h2>
+              <p className="text-text-secondary">
+                O tratamento de dados pessoais e o uso de cookies neste site, incluindo os cookies opcionais de medição e publicidade do Meta, estão descritos na nossa <Link href="/privacidade" className="text-primary-blue hover:underline">Política de Privacidade</Link>.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-lg font-bold text-navy mb-3">6. Contato</h2>
               <p className="text-text-secondary">
                 Caso tenha dúvidas sobre estes termos de uso, entre em contato pelo e-mail: <a href="mailto:contato@alverotecnologia.com.br" className="text-primary-blue hover:underline">contato@alverotecnologia.com.br</a>.
               </p>

@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { CheckCircle2, ArrowLeft, Send } from 'lucide-react';
 import Link from 'next/link';
+import { trackMetaEvent } from '@/lib/meta-pixel';
 
 export default function DiagnosticoPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -22,7 +23,6 @@ export default function DiagnosticoPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Submissão iniciada. Dados do formulário:', formData);
     setIsLoading(true);
     setError('');
 
@@ -41,7 +41,6 @@ export default function DiagnosticoPage() {
     }
 
     try {
-      console.log('Enviando requisição POST para /api/diagnostico...');
       const res = await fetch('/api/diagnostico', {
         method: 'POST',
         headers: {
@@ -50,13 +49,13 @@ export default function DiagnosticoPage() {
         body: JSON.stringify(formData),
       });
 
-      console.log('Resposta da API recebida. Status:', res.status);
       if (!res.ok) {
         throw new Error(`Erro HTTP! status: ${res.status}`);
       }
 
-      const data = await res.json();
-      console.log('Sucesso no processamento do lead:', data);
+      await res.json();
+      // Só dispara se o visitante aceitou os cookies; não envia dados pessoais.
+      trackMetaEvent('Lead', { content_name: formData.solution });
       setIsSubmitted(true);
     } catch (err: any) {
       console.error('Erro detectado durante a submissão do formulário:', err);
@@ -193,8 +192,12 @@ export default function DiagnosticoPage() {
                 <Send size={20} />
               </button>
               
-              <p className="text-[10px] text-text-secondary text-center">
-                Ao enviar, você concorda com nossa Política de Privacidade. Seus dados estão seguros.
+              <p className="text-xs text-text-secondary text-center">
+                Ao enviar, você concorda com o tratamento dos seus dados conforme a{' '}
+                <Link href="/privacidade" target="_blank" rel="noopener noreferrer" className="text-primary-blue underline hover:text-navy">
+                  Política de Privacidade
+                </Link>
+                .
               </p>
             </form>
           </motion.div>

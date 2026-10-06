@@ -3,6 +3,8 @@
 import React from 'react';
 import Link from 'next/link';
 import Logo from './Logo';
+import { COMPANY } from '@/lib/company';
+import { openConsentPreferences } from '@/lib/consent';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -69,12 +71,20 @@ export default function Footer() {
         </div>
 
         <div className="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-white/40 text-xs">
-            © {currentYear} Alvero Tecnologia. Todos os direitos reservados.
-          </p>
-          <div className="flex items-center gap-6 text-white/40 text-xs">
+          <div className="text-white/40 text-xs text-center md:text-left space-y-1">
+            <p>© {currentYear} {COMPANY.brandName}. Todos os direitos reservados.</p>
+            {(COMPANY.legalName || COMPANY.cnpj) && (
+              <p>
+                {[COMPANY.legalName, COMPANY.cnpj && `CNPJ ${COMPANY.cnpj}`].filter(Boolean).join(' · ')}
+              </p>
+            )}
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-white/40 text-xs">
             <Link href="/termos" className="hover:text-white transition-colors">Termos de Uso</Link>
             <Link href="/privacidade" className="hover:text-white transition-colors">Privacidade</Link>
+            <button type="button" onClick={openConsentPreferences} className="hover:text-white transition-colors cursor-pointer">
+              Preferências de cookies
+            </button>
           </div>
         </div>
       </div>
