@@ -21,7 +21,27 @@ declare global {
 
 let initialized = false;
 
-function newEventId() {
+// fbclid do link do anúncio, guardado só em memória até o visitante aceitar os cookies.
+const landingFbclid = (() => {
+  if (typeof window === 'undefined') return null;
+  const value = new URLSearchParams(window.location.search).get('fbclid');
+  return value && /^[\w-]{1,500}$/.test(value) ? value : null;
+})();
+const FBC_MAX_AGE = 90 * 24 * 60 * 60;
+
+function readCookie(name: string) {
+  const match = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`));
+  return match ? decodeURIComponent(match[1]) : undefined;
+}
+
+// Cria o _fbc a partir do fbclid mesmo que o fbevents.js seja bloqueado,
+// para a Conversions API conseguir atribuir o Lead ao anúncio.
+function ensureFbcCookie() {
+  if (!landingFbclid || readCookie('_fbc')) return;
+  document.cookie = `_fbc=fb.1.${Date.now()}.${landingFbclid}; Max-Age=${FBC_MAX_AGE}; Path=/; SameSite=Lax`;
+}
+
+export function newEventId() {
   if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) return crypto.randomUUID();
   return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 }
@@ -31,6 +51,7 @@ function newEventId() {
 export function loadMetaPixel() {
   if (initialized || !META_PIXEL_ID) return;
   initialized = true;
+  ensureFbcCookie();
 
   if (!window.fbq) {
     const fbq = function (...args: unknown[]) {
@@ -59,11 +80,27 @@ export function isMetaPixelLoaded() {
 }
 
 // Dispara um evento padrão do Meta somente com consentimento e Pixel configurado.
-// O eventID permite deduplicar com a Conversions API no futuro.
-export function trackMetaEvent(event: 'PageView' | 'Lead' | 'Contact', params: Record<string, string> = {}) {
+// O eventID é o mesmo enviado pela Conversions API, para o Meta deduplicar.
+export function trackMetaEvent(
+  event: 'PageView' | 'Lead' | 'Contact',
+  params: Record<string, string> = {},
+  eventId: string = newEventId(),
+) {
   if (!META_PIXEL_ID || !hasMarketingConsent()) return;
   loadMetaPixel();
-  window.fbq?.('track', event, params, { eventID: newEventId() });
+  window.fbq?.('track', event, params, { eventID: eventId });
+}
+
+// Dados que acompanham o formulário para a Conversions API. Sem consentimento, retorna undefined.
+export function getMetaServerEventData(eventId: string) {
+  if (!META_PIXEL_ID || !hasMarketingConsent()) return undefined;
+  ensureFbcCookie();
+  return {
+    eventId,
+    eventSourceUrl: window.location.href,
+    fbp: readCookie('_fbp'),
+    fbc: readCookie('_fbc'),
+  };
 }
 
 function deleteCookie(name: string) {

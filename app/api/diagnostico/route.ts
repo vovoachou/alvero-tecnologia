@@ -1,4 +1,5 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, after } from 'next/server';
+import { parseMetaClientData, sendMetaLead } from '@/lib/meta-capi';
 
 export async function POST(request: Request) {
   try {
@@ -59,6 +60,14 @@ export async function POST(request: Request) {
         error: 'Falha ao enviar e-mail via Resend', 
         details: resData 
       }, { status: response.status || 500 });
+    }
+
+    // Lead pela Conversions API: só chega aqui com consentimento (o navegador só envia `meta` nesse caso).
+    const meta = parseMetaClientData(body?.meta);
+    if (meta) {
+      const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || request.headers.get('x-real-ip') || undefined;
+      const userAgent = request.headers.get('user-agent') || undefined;
+      after(() => sendMetaLead(meta, { ip, userAgent, contentName: String(solution).slice(0, 100) || undefined }));
     }
 
     return NextResponse.json({ success: true, data: resData });

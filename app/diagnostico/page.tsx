@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { CheckCircle2, ArrowLeft, Send } from 'lucide-react';
 import Link from 'next/link';
-import { trackMetaEvent } from '@/lib/meta-pixel';
+import { getMetaServerEventData, newEventId, trackMetaEvent } from '@/lib/meta-pixel';
 
 export default function DiagnosticoPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -41,12 +41,13 @@ export default function DiagnosticoPage() {
     }
 
     try {
+      const metaEventId = newEventId();
       const res = await fetch('/api/diagnostico', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, meta: getMetaServerEventData(metaEventId) }),
       });
 
       if (!res.ok) {
@@ -54,8 +55,9 @@ export default function DiagnosticoPage() {
       }
 
       await res.json();
-      // Só dispara se o visitante aceitou os cookies; não envia dados pessoais.
-      trackMetaEvent('Lead', { content_name: formData.solution });
+      // Só dispara se o visitante aceitou os cookies; não envia nome, e-mail ou telefone.
+      // O servidor envia o mesmo Lead pela Conversions API com o mesmo eventID.
+      trackMetaEvent('Lead', { content_name: formData.solution }, metaEventId);
       setIsSubmitted(true);
     } catch (err: any) {
       console.error('Erro detectado durante a submissão do formulário:', err);
