@@ -30,5 +30,20 @@ export default function MetaPixel() {
     trackMetaEvent('PageView');
   }, [granted, pathname]);
 
+  // Evento Contact em qualquer link de WhatsApp do site (trackMetaEvent já exige consentimento).
+  useEffect(() => {
+    if (!META_PIXEL_ID || !granted) return;
+    const onClick = (e: MouseEvent) => {
+      const link = (e.target as Element | null)?.closest?.('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href') || '';
+      if (/^(https?:\/\/)?(wa\.me|(api|web)\.whatsapp\.com)\b|^whatsapp:/i.test(href)) {
+        trackMetaEvent('Contact', { content_name: 'WhatsApp' });
+      }
+    };
+    document.addEventListener('click', onClick, true);
+    return () => document.removeEventListener('click', onClick, true);
+  }, [granted]);
+
   return null;
 }

@@ -90,7 +90,7 @@ export default function PrivacidadePage() {
                 </li>
               </ul>
               <p className="text-text-secondary mt-3">
-                Quando o Pixel está ativo, o Meta pode coletar ou receber informações do seu navegador e dispositivo, como endereço IP, tipo de navegador, páginas visitadas, data e hora do acesso e ações realizadas no site (por exemplo, o envio do formulário de diagnóstico). Não enviamos ao Meta seu nome, e-mail, telefone ou o conteúdo do formulário.
+                Quando o Pixel está ativo, o Meta pode coletar ou receber informações do seu navegador e dispositivo, como endereço IP, tipo de navegador, páginas visitadas, data e hora do acesso e ações realizadas no site (por exemplo, o envio do formulário de diagnóstico ou o clique para falar conosco pelo WhatsApp). Não enviamos ao Meta seu nome, e-mail, telefone ou o conteúdo do formulário.
               </p>
               <p className="text-text-secondary mt-3">
                 Também com o seu consentimento, quando você envia o formulário de diagnóstico, nosso servidor informa ao Meta que uma solicitação foi realizada, por meio da API de Conversões do Meta. Essa comunicação inclui apenas o identificador do evento, a página de origem, o endereço IP, o tipo de navegador e os identificadores dos cookies <code>_fbp</code> e <code>_fbc</code>, e serve para que a conversão seja medida mesmo quando o navegador bloqueia o Pixel. O mesmo identificador de evento evita que a solicitação seja contada em duplicidade. Se você recusar os cookies opcionais, essa comunicação não é feita.

@@ -72,6 +72,8 @@ export function loadMetaPixel() {
   }
 
   window.fbq('consent', 'grant');
+  // Desliga os eventos automáticos do Meta (ex.: SubscribedButtonClick): só PageView e Lead são enviados.
+  window.fbq('set', 'autoConfig', false, META_PIXEL_ID);
   window.fbq('init', META_PIXEL_ID);
 }
 
