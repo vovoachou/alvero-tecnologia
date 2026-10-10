@@ -22,10 +22,10 @@ const domainVerification = process.env.META_DOMAIN_VERIFICATION?.trim();
 export const metadata: Metadata = {
   metadataBase: new URL(COMPANY.siteUrl),
   title: {
-    default: 'Alvero Tecnologia | Sistemas Sob Medida, IA e Automação',
+    default: 'Alvero Tecnologia | Desenvolvimento de sistemas sob medida',
     template: '%s | Alvero Tecnologia',
   },
-  description: 'Tecnologia que se adapta ao seu negócio. Sistemas, IA e automação com escopo, prazo e investimento claros.',
+  description: 'Desenvolvemos o sistema que a sua empresa precisa. Software sob medida com escopo, prazo e valor fechados em contrato.',
   openGraph: {
     type: 'website',
     locale: 'pt_BR',

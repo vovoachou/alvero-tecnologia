@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { COMPANY } from './company';
 
 // Metadados por página. A imagem é gerada por app/opengraph-image.tsx; ela é referenciada
-// explicitamente porque rotas aninhadas (ex.: /solucoes/*) não a herdam.
+// explicitamente porque rotas aninhadas (ex.: /diagnostico) não a herdam.
 export function pageMetadata({ title, description, path }: { title: string; description: string; path: string }): Metadata {
   return {
     title,

@@ -42,3 +42,73 @@
 .bg-navy-gradient {
   background: radial-gradient(circle at top right, #0D1B3D 0%, #0B1320 100%);
 }
+
+/* Hero: grade técnica que some nas bordas, com feixes de luz percorrendo as linhas. */
+.hero-grid {
+  --cell: 64px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: var(--cell) var(--cell);
+  mask-image: radial-gradient(ellipse 80% 70% at 60% 40%, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 60% 40%, #000 30%, transparent 75%);
+}
+
+.hero-beam-x,
+.hero-beam-y {
+  position: absolute;
+  pointer-events: none;
+}
+
+.hero-beam-x {
+  left: 0;
+  height: 1px;
+  width: 180px;
+  background: linear-gradient(90deg, transparent, #149BFF, #00C2A8, transparent);
+  animation: hero-beam-x 7s linear infinite;
+}
+
+.hero-beam-y {
+  top: 0;
+  width: 1px;
+  height: 180px;
+  background: linear-gradient(180deg, transparent, #149BFF, #00C2A8, transparent);
+  animation: hero-beam-y 9s linear infinite;
+}
+
+@keyframes hero-beam-x {
+  from { transform: translateX(-200px); }
+  to { transform: translateX(100vw); }
+}
+
+@keyframes hero-beam-y {
+  from { transform: translateY(-200px); }
+  to { transform: translateY(100vh); }
+}
+
+.hero-node {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  margin: -2px 0 0 -2px;
+  border-radius: 9999px;
+  background: #149BFF;
+  box-shadow: 0 0 12px 2px rgba(20, 155, 255, 0.6);
+  animation: hero-node 4s ease-in-out infinite;
+}
+
+@keyframes hero-node {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-beam-x,
+  .hero-beam-y {
+    display: none;
+  }
+  .hero-node {
+    animation: none;
+    opacity: 0.6;
+  }
+}

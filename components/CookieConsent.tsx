@@ -20,13 +20,19 @@ export default function CookieConsent() {
   useEffect(() => onConsentPreferencesOpen(() => setIsReopened(true)), []);
 
   // Mede o banner para reservar o mesmo espaço no fim da página (nada fica escondido atrás dele).
+  // No desktop ele flutua 24px acima da borda (sm:bottom-6), então reserva essa margem também.
   useEffect(() => {
     const panel = panelRef.current;
     if (!isOpen || !panel) return;
-    const observer = new ResizeObserver(() => setHeight(panel.offsetHeight));
+    const observer = new ResizeObserver(() => setHeight(panel.offsetHeight + (window.matchMedia('(min-width: 640px)').matches ? 24 : 0)));
     observer.observe(panel);
     return () => observer.disconnect();
   }, [isOpen, consent]);
+
+  // Reaberto pelo link do rodapé: rola até o fim para que os links do rodapé fiquem acima do banner.
+  useEffect(() => {
+    if (isReopened && height) window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+  }, [isReopened, height]);
 
   if (!isOpen || consent === undefined) return null;
 
@@ -37,7 +43,7 @@ export default function CookieConsent() {
 
   return (
     <>
-      <div aria-hidden="true" className="sm:hidden" style={{ height }} />
+      <div aria-hidden="true" className="bg-navy" style={{ height }} />
       <div
         ref={panelRef}
         role="region"

@@ -8,11 +8,9 @@ import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
 
 const navLinks = [
-  { name: 'Soluções', href: '/#solucoes' },
+  { name: 'O que construímos', href: '/#o-que-fazemos' },
   { name: 'Como funciona', href: '/#como-funciona' },
-  { name: 'Diferenciais', href: '/#diferenciais' },
-  { name: 'Cases', href: '/#cases' },
-  { name: 'Sobre', href: '/#sobre' },
+  { name: 'Por que a Alvero', href: '/#diferenciais' },
 ];
 
 export default function Navbar() {

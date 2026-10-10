@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { ImageResponse } from 'next/og';
 
-export const alt = 'Alvero Tecnologia — Sistemas sob medida, IA e automação';
+export const alt = 'Alvero Tecnologia — Desenvolvimento de sistemas sob medida';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -33,10 +33,10 @@ export default async function OpengraphImage() {
           </div>
         </div>
         <div style={{ fontSize: 52, fontWeight: 700, lineHeight: 1.2, maxWidth: '980px' }}>
-          Tecnologia que se adapta ao seu negócio.
+          Desenvolvemos o sistema que a sua empresa precisa.
         </div>
         <div style={{ fontSize: 30, color: 'rgba(255,255,255,0.7)', marginTop: '24px' }}>
-          Sistemas sob medida · Agentes de IA · Automação · Dashboards
+          Software sob medida com escopo, prazo e valor fechados em contrato.
         </div>
       </div>
     ),

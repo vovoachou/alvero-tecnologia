@@ -18,7 +18,7 @@ const values = [
   {
     icon: CheckSquare,
     title: 'Transparência Total',
-    description: 'Escopos claros, prazos respeitados e preços públicos. Você no controle absoluto do que está contratando.',
+    description: 'Escopo, prazo e valor definidos em contrato antes de começar. Você sabe exatamente o que está contratando.',
   },
 ];
 
@@ -51,8 +51,8 @@ export default function AboutSection() {
                 <span className="text-xs font-semibold text-navy uppercase tracking-wider">Código Próprio e Seguro</span>
               </div>
               <div>
-                <span className="block text-4xl font-extrabold text-digital-turquoise mb-1">24/7</span>
-                <span className="text-xs font-semibold text-navy uppercase tracking-wider">Suporte e Evolução</span>
+                <span className="block text-4xl font-extrabold text-digital-turquoise mb-1">Seg a Sáb</span>
+                <span className="text-xs font-semibold text-navy uppercase tracking-wider">Suporte em horário comercial</span>
               </div>
             </div>
           </motion.div>

@@ -15,7 +15,6 @@ export default function DiagnosticoPage() {
     email: '',
     whatsapp: '',
     company: '',
-    solution: 'Sistema Sob Medida',
     bottleneck: '',
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -57,7 +56,7 @@ export default function DiagnosticoPage() {
       await res.json();
       // Só dispara se o visitante aceitou os cookies; não envia nome, e-mail ou telefone.
       // O servidor envia o mesmo Lead pela Conversions API com o mesmo eventID.
-      trackMetaEvent('Lead', { content_name: formData.solution }, metaEventId);
+      trackMetaEvent('Lead', { content_name: 'Diagnóstico gratuito' }, metaEventId);
       setIsSubmitted(true);
     } catch (err: any) {
       console.error('Erro detectado durante a submissão do formulário:', err);
@@ -82,7 +81,7 @@ export default function DiagnosticoPage() {
             </div>
             <h1 className="text-3xl font-bold text-navy mb-4">Solicitação enviada!</h1>
             <p className="text-text-secondary text-lg mb-10 leading-relaxed">
-              Obrigado pelo seu interesse. Analisaremos as informações da sua empresa e entraremos em contato via WhatsApp em até 24 horas para agendar o seu diagnóstico.
+              Obrigado pelo seu interesse. Analisaremos as informações da sua empresa e entraremos em contato via WhatsApp em até 1 dia útil para agendar o seu diagnóstico.
             </p>
             <Link 
               href="/"
@@ -113,7 +112,7 @@ export default function DiagnosticoPage() {
               Vamos mapear o próximo passo da sua tecnologia.
             </h1>
             <p className="text-xl text-text-secondary mb-10 leading-relaxed">
-              Mapeamos os gargalos operacionais da sua empresa e projetamos a arquitetura tecnológica ideal para sua escala atual e futura.
+              Entendemos a operação e os gargalos da sua empresa e enviamos uma proposta fechada para o sistema que ela precisa, com escopo, prazo e valor definidos.
             </p>
 
             <div className="space-y-6">
@@ -166,18 +165,6 @@ export default function DiagnosticoPage() {
                   <label className="text-sm font-semibold text-navy ml-1">Empresa</label>
                   <input required value={formData.company} onChange={(e) => setFormData({ ...formData, company: e.target.value })} type="text" placeholder="Nome da sua empresa" className="w-full px-5 py-4 rounded-xl border border-border-subtle focus:border-primary-blue outline-none transition-colors" />
                 </div>
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-sm font-semibold text-navy ml-1">Solução de interesse</label>
-                <select value={formData.solution} onChange={(e) => setFormData({ ...formData, solution: e.target.value })} className="w-full px-5 py-4 rounded-xl border border-border-subtle focus:border-primary-blue outline-none transition-colors bg-white">
-                  <option>Sistema Sob Medida</option>
-                  <option>Agentes de IA</option>
-                  <option>Automação de Processos</option>
-                  <option>Painel de Indicadores</option>
-                  <option>Do Rascunho ao App</option>
-                  <option>Operação Digital Completa</option>
-                </select>
               </div>
 
               <div className="space-y-2">

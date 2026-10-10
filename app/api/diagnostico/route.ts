@@ -4,7 +4,7 @@ import { parseMetaClientData, sendMetaLead } from '@/lib/meta-capi';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name = '', email = '', whatsapp = '', company = '', solution = '', bottleneck = '' } = body || {};
+    const { name = '', email = '', whatsapp = '', company = '', bottleneck = '' } = body || {};
 
     const apiKey = process.env.RESEND_API_KEY;
 
@@ -14,7 +14,6 @@ export async function POST(request: Request) {
       console.log('E-mail:', email);
       console.log('WhatsApp:', whatsapp);
       console.log('Empresa:', company);
-      console.log('Solução:', solution);
       console.log('Gargalo:', bottleneck);
       console.log('---------------------------------------------');
 
@@ -41,7 +40,6 @@ export async function POST(request: Request) {
             <p style="margin: 15px 0;"><strong>E-mail:</strong> ${email}</p>
             <p style="margin: 15px 0;"><strong>WhatsApp:</strong> ${whatsapp}</p>
             <p style="margin: 15px 0;"><strong>Empresa:</strong> ${company}</p>
-            <p style="margin: 15px 0;"><strong>Solução de Interesse:</strong> ${solution}</p>
             <p style="margin: 15px 0; background-color: #F5F7FA; padding: 15px; border-radius: 10px; border: 1px solid #E6E8EB;">
               <strong>Gargalo Operacional:</strong><br/>
               ${safeBottleneck}
@@ -67,7 +65,7 @@ export async function POST(request: Request) {
     if (meta) {
       const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || request.headers.get('x-real-ip') || undefined;
       const userAgent = request.headers.get('user-agent') || undefined;
-      after(() => sendMetaLead(meta, { ip, userAgent, contentName: String(solution).slice(0, 100) || undefined }));
+      after(() => sendMetaLead(meta, { ip, userAgent, contentName: 'Diagnóstico gratuito' }));
     }
 
     return NextResponse.json({ success: true, data: resData });

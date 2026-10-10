@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function CTASection() {
   return (
@@ -26,20 +26,11 @@ export default function CTASection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-5xl lg:text-6xl font-bold mb-8"
+              className="text-3xl md:text-5xl font-bold mb-10"
             >
-              Descubra qual solução faz sentido para sua operação.
+              Vamos conversar sobre a sua empresa?
             </motion.h2>
             
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-lg md:text-xl text-white/70 mb-12 leading-relaxed"
-            >
-              Em um diagnóstico técnico especializado, mapeamos o principal gargalo da sua empresa e projetamos caminhos para gerar controle absoluto, produtividade e escalabilidade.
-            </motion.p>
 
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -52,28 +43,10 @@ export default function CTASection() {
                 href="/diagnostico"
                 className="px-12 py-5 bg-primary-blue hover:bg-bright-blue text-white rounded-2xl font-bold text-xl transition-all shadow-xl hover:scale-105 flex items-center gap-3"
               >
-                Agendar diagnóstico estratégico
+                Agendar diagnóstico gratuito
                 <ArrowRight size={24} />
               </Link>
 
-              <div className="flex flex-wrap justify-center gap-6 text-sm text-white/50 font-medium">
-                <span className="flex items-center gap-2">
-                  <CheckCircle2 size={16} className="text-digital-turquoise" />
-                  Sem compromisso
-                </span>
-                <span className="flex items-center gap-2">
-                  <CheckCircle2 size={16} className="text-digital-turquoise" />
-                  Conversa direta
-                </span>
-                <span className="flex items-center gap-2">
-                  <CheckCircle2 size={16} className="text-digital-turquoise" />
-                  Análise inicial
-                </span>
-                <span className="flex items-center gap-2">
-                  <CheckCircle2 size={16} className="text-digital-turquoise" />
-                  Orientação técnica
-                </span>
-              </div>
             </motion.div>
           </div>
         </motion.div>

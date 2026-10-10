@@ -19,7 +19,7 @@ export default function TermosPage() {
           </Link>
 
           <h1 className="text-3xl md:text-4xl font-bold text-navy mb-4">Termos de Uso</h1>
-          <p className="text-text-secondary text-xs mb-8">Última atualização: 6 de outubro de 2026</p>
+          <p className="text-text-secondary text-xs mb-8">Última atualização: 9 de outubro de 2026</p>
 
           <div className="space-y-6 text-text-primary leading-relaxed text-sm md:text-base">
             <section>
@@ -46,7 +46,7 @@ export default function TermosPage() {
             <section>
               <h2 className="text-lg font-bold text-navy mb-3">4. Limitação de Responsabilidade</h2>
               <p className="text-text-secondary">
-                Embora façamos o máximo esforço para manter as informações no site precisas e atualizadas (incluindo as referências de investimento), não garantimos que todos os dados estejam livres de erros pontuais. As faixas de preço apresentadas no site são estimativas referenciais de mercado e não representam uma proposta de orçamento fechado vinculativo.
+                Embora façamos o máximo esforço para manter as informações no site precisas e atualizadas, não garantimos que todos os dados estejam livres de erros pontuais. O conteúdo do site tem caráter informativo e não constitui proposta comercial. Escopo, prazo e valor de cada projeto são definidos em proposta específica e formalizados em contrato.
               </p>
             </section>
 

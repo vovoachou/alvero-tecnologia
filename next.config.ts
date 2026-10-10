@@ -19,6 +19,13 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // As antigas páginas de soluções foram removidas; há anúncios apontando para /solucoes/sistema.
+  async redirects() {
+    return [
+      { source: '/solucoes', destination: '/', permanent: true },
+      { source: '/solucoes/:path*', destination: '/', permanent: true },
+    ];
+  },
   output: 'standalone',
   transpilePackages: ['motion'],
   webpack: (config, {dev}) => {

@@ -42,7 +42,7 @@ export default function PrivacidadePage() {
           </Link>
 
           <h1 className="text-3xl md:text-4xl font-bold text-navy mb-4">Política de Privacidade</h1>
-          <p className="text-text-secondary text-xs mb-8">Última atualização: 6 de outubro de 2026</p>
+          <p className="text-text-secondary text-xs mb-8">Última atualização: 9 de outubro de 2026</p>
 
           <div className="space-y-6 text-text-primary leading-relaxed text-sm md:text-base">
             <section>
@@ -55,7 +55,7 @@ export default function PrivacidadePage() {
             <section>
               <h2 className="text-lg font-bold text-navy mb-3">2. Coleta de Dados Pessoais</h2>
               <p className="text-text-secondary">
-                Coletamos as informações que você nos fornece voluntariamente por meio do preenchimento do formulário em nossa página de Diagnóstico Gratuito. Os dados coletados incluem: seu nome completo, e-mail corporativo, número de WhatsApp/telefone, nome de sua empresa, solução de interesse e a descrição do principal gargalo operacional de seu negócio.
+                Coletamos as informações que você nos fornece voluntariamente por meio do preenchimento do formulário em nossa página de Diagnóstico Gratuito. Os dados coletados incluem: seu nome completo, e-mail corporativo, número de WhatsApp/telefone, nome de sua empresa e a descrição do principal gargalo operacional de seu negócio.
               </p>
               <p className="text-text-secondary mt-3">
                 Se você autorizar os cookies de medição e publicidade, também são coletadas informações de navegação, conforme descrito na seção 5.
