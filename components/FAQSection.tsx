@@ -23,19 +23,14 @@ const faqs = [
   },
 ]
 
-function FAQItem({ q, a, i }: { q: string, a: string, i: number }) {
+function FAQItem({ q, a }: { q: string, a: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: i * 0.05 }}
-      className="border-b border-border-subtle"
-    >
+    <div className="border-b border-border-subtle">
       <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
         className="w-full py-6 flex items-center justify-between text-left group"
       >
         <span className="text-lg font-bold text-navy group-hover:text-primary-blue transition-colors">{q}</span>
@@ -58,7 +53,7 @@ function FAQItem({ q, a, i }: { q: string, a: string, i: number }) {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }
 
@@ -71,8 +66,8 @@ export default function FAQSection() {
         </div>
 
         <div className="space-y-2">
-          {faqs.map((faq, i) => (
-            <FAQItem key={i} q={faq.q} a={faq.a} i={i} />
+          {faqs.map((faq) => (
+            <FAQItem key={faq.q} q={faq.q} a={faq.a} />
           ))}
         </div>
       </div>

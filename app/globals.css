@@ -112,3 +112,48 @@
     opacity: 0.6;
   }
 }
+
+/* Animações da ilustração da hero em CSS puro (não dependem do JavaScript para o conteúdo aparecer). */
+.hero-fade-in {
+  animation: hero-fade-in 0.8s ease-out 0.2s both;
+}
+
+@keyframes hero-fade-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.hero-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: hero-draw 1.8s ease-in-out 0.6s forwards;
+}
+
+@keyframes hero-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.hero-float {
+  animation: hero-float 5s ease-in-out infinite;
+}
+
+.hero-float-delay {
+  animation-duration: 6s;
+  animation-direction: reverse;
+}
+
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-in,
+  .hero-float {
+    animation: none;
+  }
+  .hero-draw {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}

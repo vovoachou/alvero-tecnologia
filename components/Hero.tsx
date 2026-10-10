@@ -1,8 +1,5 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
-import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 
 import Logo from './Logo';
@@ -12,8 +9,8 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-navy text-white">
       {/* Fundo: brilho, grade técnica e feixes de luz percorrendo as linhas da grade (múltiplos de 64px) */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 right-[-10%] w-[70%] h-[70%] bg-primary-blue/25 blur-[140px] rounded-full" />
-        <div className="absolute bottom-[-20%] left-[-10%] w-[45%] h-[50%] bg-digital-turquoise/10 blur-[120px] rounded-full" />
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 60% 55% at 85% 0%, rgba(37, 99, 235, 0.35), transparent 70%)' }} />
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 45% 45% at 0% 100%, rgba(0, 194, 168, 0.12), transparent 70%)' }} />
         <div className="absolute inset-0 hero-grid" />
         <div className="absolute inset-0 overflow-hidden">
           {[192, 448, 704].map((top, i) => (
@@ -32,11 +29,7 @@ export default function Hero() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 md:px-10 grid lg:grid-cols-2 gap-16 items-center z-10">
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-        >
+        <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-bright-blue text-xs font-bold tracking-wider uppercase mb-6">
             Desenvolvimento de sistemas
           </div>
@@ -66,15 +59,9 @@ export default function Hero() {
               Falar no WhatsApp
             </a>
           </div>
+        </div>
 
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative hidden lg:block"
-        >
+        <div className="relative hidden lg:block hero-fade-in">
           {/* Janela de sistema estilizada (sem dados reais) */}
           <div className="relative w-full max-w-[540px] mx-auto">
             <div className="absolute -inset-10 gradient-institutional opacity-20 blur-3xl rounded-full" />
@@ -127,14 +114,13 @@ export default function Hero() {
                         <line key={y} x1="0" x2="300" y1={y} y2={y} stroke="rgba(255,255,255,0.06)" />
                       ))}
                       <path d="M0,80 C30,75 50,60 80,62 S130,40 160,45 S210,25 240,28 S280,12 300,10 L300,100 L0,100 Z" fill="url(#hero-area)" />
-                      <motion.path
+                      <path
                         d="M0,80 C30,75 50,60 80,62 S130,40 160,45 S210,25 240,28 S280,12 300,10"
                         fill="none"
                         stroke="url(#hero-line)"
                         strokeWidth="2.5"
-                        initial={{ pathLength: 0 }}
-                        animate={{ pathLength: 1 }}
-                        transition={{ duration: 1.8, delay: 0.6, ease: 'easeInOut' }}
+                        pathLength={1}
+                        className="hero-draw"
                       />
                     </svg>
                   </div>
@@ -154,10 +140,8 @@ export default function Hero() {
             </div>
 
             {/* Cartão flutuante: fluxo de automação */}
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -left-10 bottom-10 rounded-2xl border border-white/15 bg-navy/90 backdrop-blur-xl px-4 py-3 shadow-2xl flex items-center gap-2"
+            <div
+              className="hero-float absolute -left-10 bottom-10 rounded-2xl border border-white/15 bg-navy/90 backdrop-blur-xl px-4 py-3 shadow-2xl flex items-center gap-2"
             >
               {['bg-primary-blue', 'bg-bright-blue', 'bg-digital-turquoise'].map((color, i) => (
                 <React.Fragment key={color}>
@@ -167,18 +151,16 @@ export default function Hero() {
                   </div>
                 </React.Fragment>
               ))}
-            </motion.div>
+            </div>
 
             {/* Cartão flutuante: marca */}
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -right-6 -top-8 rounded-2xl border border-white/15 bg-navy/90 backdrop-blur-xl px-5 py-4 shadow-2xl"
+            <div
+              className="hero-float hero-float-delay absolute -right-6 -top-8 rounded-2xl border border-white/15 bg-navy/90 backdrop-blur-xl px-5 py-4 shadow-2xl"
             >
               <Logo variant="light" />
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

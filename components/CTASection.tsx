@@ -1,7 +1,4 @@
-'use client';
-
 import React from 'react';
-import { motion } from 'motion/react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
@@ -9,10 +6,7 @@ export default function CTASection() {
   return (
     <section className="py-24 bg-background-soft">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+        <div 
           className="relative rounded-[48px] overflow-hidden bg-navy-gradient p-12 md:p-20 text-white text-center shadow-brand-dark"
         >
           {/* Decorative bits */}
@@ -22,21 +16,14 @@ export default function CTASection() {
           </div>
 
           <div className="relative z-10 max-w-3xl mx-auto">
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <h2 
               className="text-3xl md:text-5xl font-bold mb-10"
             >
               Vamos conversar sobre a sua empresa?
-            </motion.h2>
+            </h2>
             
 
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+            <div 
               className="flex flex-col items-center gap-8"
             >
               <Link
@@ -47,9 +34,9 @@ export default function CTASection() {
                 <ArrowRight size={24} />
               </Link>
 
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

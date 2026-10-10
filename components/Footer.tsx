@@ -16,14 +16,14 @@ export default function Footer() {
           <Logo variant="light" />
 
           <div>
-            <h4 className="text-lg font-bold mb-6">Contato</h4>
+            <h2 className="text-lg font-bold mb-6">Contato</h2>
             <ul className="space-y-4 text-sm text-white/60">
               <li className="flex flex-col">
-                <span className="text-white/40 mb-1">E-mail</span>
+                <span className="text-white/60 mb-1">E-mail</span>
                 <a href="mailto:contato@alverotecnologia.com.br" className="text-white hover:text-bright-blue transition-colors font-medium">contato@alverotecnologia.com.br</a>
               </li>
               <li className="flex flex-col">
-                <span className="text-white/40 mb-1">WhatsApp</span>
+                <span className="text-white/60 mb-1">WhatsApp</span>
                 <a href="https://wa.me/5519910019596" target="_blank" rel="noopener noreferrer" className="text-white hover:text-bright-blue transition-colors font-medium">+55 19 91001-9596</a>
               </li>
               <li className="pt-4 flex gap-4">
@@ -37,7 +37,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-white/40 text-xs text-center md:text-left space-y-1">
+          <div className="text-white/60 text-xs text-center md:text-left space-y-1">
             <p>© {currentYear} {COMPANY.brandName}. Todos os direitos reservados.</p>
             {(COMPANY.legalName || COMPANY.cnpj) && (
               <p>
@@ -45,7 +45,7 @@ export default function Footer() {
               </p>
             )}
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-white/40 text-xs">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-white/60 text-xs">
             <Link href="/termos" className="hover:text-white transition-colors">Termos de Uso</Link>
             <Link href="/privacidade" className="hover:text-white transition-colors">Privacidade</Link>
             <button type="button" onClick={openConsentPreferences} className="hover:text-white transition-colors cursor-pointer">

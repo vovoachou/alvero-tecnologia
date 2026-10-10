@@ -1,7 +1,4 @@
-'use client';
-
 import React from 'react';
-import { motion } from 'motion/react';
 
 const steps = [
   { title: 'Diagnóstico gratuito', description: 'Entendemos o seu negócio e o que precisa ser resolvido.' },
@@ -17,12 +14,8 @@ export default function ProcessSection() {
 
         <div className="grid md:grid-cols-3 gap-6">
           {steps.map((step, i) => (
-            <motion.div
+            <div
               key={step.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
               className="p-8 rounded-3xl bg-background-soft border border-border-subtle"
             >
               <div className="w-12 h-12 rounded-full bg-primary-blue text-white font-bold text-xl flex items-center justify-center mb-6">
@@ -30,7 +23,7 @@ export default function ProcessSection() {
               </div>
               <h3 className="text-xl font-bold text-navy mb-2">{step.title}</h3>
               <p className="text-text-secondary leading-relaxed">{step.description}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

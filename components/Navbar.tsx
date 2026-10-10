@@ -70,6 +70,8 @@ export default function Navbar() {
         {/* Mobile Toggle */}
         <button
           className="lg:hidden p-2 text-primary-blue"
+          aria-label={isMobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+          aria-expanded={isMobileMenuOpen}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} className={showDarkNavbar ? 'text-navy' : 'text-white'} />}

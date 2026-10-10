@@ -1,7 +1,4 @@
-'use client';
-
 import React from 'react';
-import { motion } from 'motion/react';
 import { Code, Zap, LineChart, BrainCircuit, Smartphone } from 'lucide-react';
 
 const items = [
@@ -19,13 +16,9 @@ export default function SolutionsSection() {
         <h2 className="text-3xl md:text-5xl font-bold text-navy text-center mb-14">O que construímos</h2>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
-          {items.map((item, i) => (
-            <motion.div
+          {items.map((item) => (
+            <div
               key={item.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
               className="bg-white rounded-3xl p-6 border border-border-subtle shadow-brand-sm flex items-start gap-4 lg:flex-col lg:items-center lg:text-center sm:last:col-span-2 lg:last:col-span-1"
             >
               <div className="w-14 h-14 flex-shrink-0 rounded-2xl bg-primary-blue/10 text-primary-blue flex items-center justify-center">
@@ -35,7 +28,7 @@ export default function SolutionsSection() {
                 <h3 className="text-lg font-bold text-navy leading-snug mb-1">{item.name}</h3>
                 <p className="text-sm text-text-secondary leading-relaxed">{item.pain}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
