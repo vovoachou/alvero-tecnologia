@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     template: '%s | Alvero Tecnologia',
   },
   description: 'Desenvolvemos o sistema que a sua empresa precisa. Software sob medida com escopo, prazo e valor fechados em contrato.',
+  alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     locale: 'pt_BR',

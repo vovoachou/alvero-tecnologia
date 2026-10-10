@@ -1,6 +1,16 @@
 import { NextResponse, after } from 'next/server';
 import { parseMetaClientData, sendMetaLead } from '@/lib/meta-capi';
 
+// Os campos vêm do visitante: escapa antes de montar o HTML do e-mail.
+function escapeHtml(value: unknown) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -21,7 +31,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: true, mock: true });
     }
 
-    const safeBottleneck = String(bottleneck).replace(/\n/g, '<br/>');
+    const safeBottleneck = escapeHtml(bottleneck).replace(/\n/g, '<br/>');
 
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -36,10 +46,10 @@ export async function POST(request: Request) {
         html: `
           <div style="font-family: sans-serif; padding: 20px; color: #172033; max-width: 600px;">
             <h1 style="color: #2563EB; border-bottom: 2px solid #E6E8EB; padding-bottom: 10px;">Novo Lead de Diagnóstico</h1>
-            <p style="margin: 15px 0;"><strong>Nome:</strong> ${name}</p>
-            <p style="margin: 15px 0;"><strong>E-mail:</strong> ${email}</p>
-            <p style="margin: 15px 0;"><strong>WhatsApp:</strong> ${whatsapp}</p>
-            <p style="margin: 15px 0;"><strong>Empresa:</strong> ${company}</p>
+            <p style="margin: 15px 0;"><strong>Nome:</strong> ${escapeHtml(name)}</p>
+            <p style="margin: 15px 0;"><strong>E-mail:</strong> ${escapeHtml(email)}</p>
+            <p style="margin: 15px 0;"><strong>WhatsApp:</strong> ${escapeHtml(whatsapp)}</p>
+            <p style="margin: 15px 0;"><strong>Empresa:</strong> ${escapeHtml(company)}</p>
             <p style="margin: 15px 0; background-color: #F5F7FA; padding: 15px; border-radius: 10px; border: 1px solid #E6E8EB;">
               <strong>Gargalo Operacional:</strong><br/>
               ${safeBottleneck}

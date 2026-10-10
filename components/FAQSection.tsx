@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     q: 'Funciona com o que já usamos?',
-    a: 'Sim. Integramos o sistema às ferramentas que a sua empresa já utiliza.',
+    a: 'Na maioria dos casos, sim. Integramos o sistema às ferramentas que a sua empresa já utiliza.',
   },
   {
     q: 'Tem suporte depois?',
