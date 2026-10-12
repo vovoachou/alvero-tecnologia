@@ -17,8 +17,6 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-const domainVerification = process.env.META_DOMAIN_VERIFICATION?.trim();
-
 export const metadata: Metadata = {
   metadataBase: new URL(COMPANY.siteUrl),
   title: {
@@ -33,7 +31,7 @@ export const metadata: Metadata = {
     siteName: COMPANY.brandName,
     url: '/',
   },
-  ...(domainVerification && { other: { 'facebook-domain-verification': domainVerification } }),
+  other: { 'facebook-domain-verification': '55r1d86nutol4a07yjw88dh0ysogmc' },
   icons: {
     icon: [
       { url: '/favicon.ico?v=2' },
